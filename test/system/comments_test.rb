@@ -10,9 +10,9 @@ class CommentsTest < ApplicationSystemTestCase
     assert_selector "h1", text: "Comments"
   end
 
-  test "should create comment" do
+  test "creating a Comment" do
     visit comments_url
-    click_on "New comment"
+    click_on "New Comment"
 
     fill_in "Body", with: @comment.body
     fill_in "Post", with: @comment.post_id
@@ -22,9 +22,9 @@ class CommentsTest < ApplicationSystemTestCase
     click_on "Back"
   end
 
-  test "should update Comment" do
-    visit comment_url(@comment)
-    click_on "Edit this comment", match: :first
+  test "updating a Comment" do
+    visit comments_url
+    click_on "Edit", match: :first
 
     fill_in "Body", with: @comment.body
     fill_in "Post", with: @comment.post_id
@@ -34,9 +34,11 @@ class CommentsTest < ApplicationSystemTestCase
     click_on "Back"
   end
 
-  test "should destroy Comment" do
-    visit comment_url(@comment)
-    click_on "Destroy this comment", match: :first
+  test "destroying a Comment" do
+    visit comments_url
+    page.accept_confirm do
+      click_on "Destroy", match: :first
+    end
 
     assert_text "Comment was successfully destroyed"
   end
